@@ -10,10 +10,13 @@
  ### The web app can be acessed through it's local address/IP on your home network.
  ### The web app uses videos/movies stored in the /static/files/vids/ directory (you can change/experiment with the location in the source code)
  ### Within the web application you can expand your video library through the upload page which will allow anyone that can access the web app to add videos from any device for ease of use
- 
  ### The web app also provides a light authenticaton page (you can alter the login userame and password in the ! do not depend on this as real security!)
  username:admin
  password:password
+ 
+ ### Other aspects which can be changed
+ max library size
+ max upload file size
  
  ## Screenshots
  
