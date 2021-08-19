@@ -141,6 +141,7 @@ def myVideoPlayer(index):
             tSize= getContainerSize()
             print(tSize)
             paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in vids]
+            paths.sort()
             if index !=0 or index !="none":
                 ffLink = paths[int(index)]
             else:
@@ -148,6 +149,18 @@ def myVideoPlayer(index):
             name = ffLink[ffLink.rindex("/")+1:]
 
             return render_template('myVideoPlayer.html',size=tSize,name=name,vLink=ffLink,files=paths,loggedIn=loggedIn)
+
+
+@app.route("/medialist",methods=['GET'])
+def medialist():
+    if request.method == 'GET':
+        if not 'username' in session:
+            return redirect(url_for('home'))
+        else:
+            loggedIn = True
+            paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in vids]
+            paths.sort()
+            return render_template('movieList.html',files=paths,loggedIn=loggedIn)
 
 
 @app.route("/login",methods=['GET','POST'])
@@ -184,6 +197,8 @@ def logout():
         return redirect(url_for('home'))
     else:
         return redirect(url_for("login"))
+
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True)

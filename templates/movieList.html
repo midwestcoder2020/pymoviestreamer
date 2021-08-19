@@ -1,0 +1,33 @@
+ {% extends 'skeleton.html' %}
+
+ {% block content %}
+ <section id="up_about" class="pt-5"
+          style="height:50vh;
+          background-image: url({{url_for('static',filename='images/cinema.png')}});
+          background-size:contain;
+          background-repeat: no-repeat;
+          background-width:
+          background-size: contain;">
+    <div class=" about_container container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto py-5 text-center">
+          <h2>Movie List</h2>
+            <p class="lead">Available Videos</p>
+             <div class="container-fluid py-3">
+     <nav class="mx-auto text-center" aria-label="Page navigation example" style="max-height: 50vh; overflow: scroll;">
+         <ul class="list-group">
+             {% for x in range(files|length) %}
+                 <li class="list-group-item bg-dark text-center font-weight-bold" style="font-size: 1.1rem;  overflow-x: scroll;">
+                    <i class="fas fa-cloud"  style="font-size:10px;color:white;text-shadow:2px 2px 4px #000000;padding-right:1rem;"></i>
+                    <!--<a href={{files[x]}} download={{files[x][files[x].rindex("/")+2::]}}>  {{files[x][files[x].rindex("/")+1::]}}</a>-->
+                    <a href="{{url_for('myVideoPlayer',index=x)}}">{{files[x][files[x].rindex("/")+1::]}}</a>
+                </li>
+             {% endfor %}
+        </ul>
+    </nav>
+ </div>
+        </div>
+      </div>
+    </div>
+</section>
+ {% endblock %}
