@@ -10,7 +10,7 @@ uname="admin"
 password="password"
 
 #size for max folder size on media server
-MAX_USER_CONTAINER_SIZE=10000 * 1024 * 1024
+MAX_USER_CONTAINER_SIZE=40000 * 1024 * 1024
 
 app.config['UPLOAD_FOLDER'] = 'static/files/vids/'
 
@@ -70,6 +70,7 @@ def mediahome():
         if not 'username' in session:
             return redirect(url_for('login'))
         else:
+            vids = os.listdir(app.config['UPLOAD_FOLDER'])
             paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in vids]
 
             ffLink=""
@@ -100,7 +101,7 @@ def medianew():
             return redirect(url_for('login'))
         else:
             loggedIn = True
-            return render_template('myfiles.html',loggedIn=loggedIn)
+            return render_template('myfiles.html',loggedIn=loggedIn,size=tSize,per=per)
 
     elif request.method == 'POST':
         if not 'username' in session:
@@ -140,6 +141,7 @@ def myVideoPlayer(index):
             tSize=0
             tSize= getContainerSize()
             print(tSize)
+            vids = os.listdir(app.config['UPLOAD_FOLDER'])
             paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in vids]
             paths.sort()
             if index !=0 or index !="none":
@@ -158,6 +160,7 @@ def medialist():
             return redirect(url_for('home'))
         else:
             loggedIn = True
+            vids = os.listdir(app.config['UPLOAD_FOLDER'])
             paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in vids]
             paths.sort()
             return render_template('movieList.html',files=paths,loggedIn=loggedIn)
