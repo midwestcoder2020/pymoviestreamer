@@ -1,0 +1,31 @@
+ {% extends 'skeleton.html' %}
+
+ {% block content %}
+ <div class="container">
+ <section id="up_listFiles" class="container p1-5 bg-dark" style="background-color:#370617 !important;" >
+
+<!-- 21:9 aspect ratio -->
+<div class="embed-responsive embed-responsive-4by3">
+
+    <video controls autoplay class="embed-responsive-item" allowfullscreen>
+        <source src="/{{vLink}}" type="video/mp4">
+        <source src="/{{vLink}}" type="video/avi">
+        <!--<source src="{{vLink}}" type="avi/video">-->
+    </video>
+
+    <!--<iframe width="600" height="800" src="{{vLink}}" frameborder="0" allowfullscreen></iframe>-->
+
+</div>
+</section>
+ <div class="container-fluid py-3">
+     <h5 class="text-center">Now Playing: {{name}}</h5>
+     <nav class="mx-auto text-center" aria-label="Page navigation example">
+        <ul class=" text-center pagination justify-content-center">
+            {% for x in range(files|length) %}
+            <li class="page-item"><a class="page-link" href={{url_for('myVideoPlayer',index=x)}}>{{x}}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+ </div>
+</div>
+ {% endblock %}

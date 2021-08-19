@@ -1,0 +1,37 @@
+{% extends 'skeleton.html' %}
+
+{% block content%}
+
+<div class="jumbotron jumbotron-fluid bg-dark color-white" style="background-color:#370617 !important; width:100%;">
+  <div class="container">
+    <h4 class="display-4">PyMediaServer</h4>
+    <p class="lead">Simple Platform to watch your videos</p>
+  </div>
+</div>
+
+<div class="container py-3" style="margin:50px auto;background-color:#370617 !important;">
+
+            <div class="row">
+            <div class="col-lg-4 mx-auto">
+                <div class="card bg-dark " style="height:400px; margin:5px auto max-width:300px; background-color:#faa307 !important;">
+                <img class="card-img-top img-responsive" style="height:350px; " src="{{url_for('static',filename='images/popcorn.png')}}" alt="Card image cap">
+                </div>
+            </div>
+                <div class="col-lg-4 mx-auto">
+                <div class="card bg-dark " style="height:400px;width: 100%; margin:5px auto;  background-color:#faa307 !important;">
+                <div class="card-body" style="text-align:justify;">
+                  <h4 class="card-title" style="color: #03071e;">Your Media Server</h4>
+                  <p class="card-text">Watch your files anywhere</p>
+                  <a href="{{url_for('mediahome')}}" class="btn btn-outline-light" style="color: #03071e;">Watch Movies</a>
+                    <hr style="background-color:white;"/>
+                    <h4 class="card-title" style="color: #03071e;">You can also upload new videos</h4>
+                  <p class="card-text">Upload files here</p>
+                  <a href="{{url_for('mediahome')}}" class="btn btn-outline-light" style="color: #03071e;">Goto Uploads</a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+{% endblock %}
