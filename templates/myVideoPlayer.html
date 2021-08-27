@@ -21,9 +21,14 @@
      <h5 class="text-center">Now Playing: {{name}}</h5>
      <nav class="mx-auto text-center" aria-label="Page navigation example">
         <ul class=" text-center pagination justify-content-center">
-            {% for x in range(files|length) %}
-            <li class="page-item"><a class="page-link" href={{url_for('myVideoPlayer',index=x)}}>{{x}}</a></li>
-            {% endfor %}
+<!--            {% for x in range(files|length) %}-->
+<!--            <li class="page-item"><a class="page-link" href={{url_for('myVideoPlayer',index=x)}}>{{x}}</a></li>-->
+<!--            {% endfor %}-->
+            {% if idx %}
+            <li class="page-item"><a class="page-link" href={{url_for('myVideoPlayer',index=idx-1)}}><i class="fa fa-arrow-circle-left"></i></a></li>
+            <li class="page-item"><a class="page-link" href={{url_for('myVideoPlayer',index=idx)}}>{{files[idx][files[idx].rindex("/")+1::]}}</a></li>
+            <li class="page-item"><a class="page-link" href={{url_for('myVideoPlayer',index=idx+1)}}><i class="fa fa-arrow-circle-right"></i></a></li>
+            {% endif %}
         </ul>
     </nav>
  </div>
